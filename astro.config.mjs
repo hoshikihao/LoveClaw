@@ -7,6 +7,13 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   // Required for sitemap + canonical URLs
   site: 'https://claw.hoshikihao.com',
+  markdown: {
+    // Better code highlighting out of the box
+    shikiConfig: {
+      theme: 'github-dark',
+      wrap: true,
+    },
+  },
   integrations: [
     sitemap(),
     // rss() is used via src/pages/rss.xml.js, but keeping it installed is fine

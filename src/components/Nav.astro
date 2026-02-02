@@ -1,0 +1,20 @@
+---
+const current = Astro.url.pathname;
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/about/', label: 'About' },
+  { href: '/rss.xml', label: 'RSS' },
+];
+---
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__brand">
+    <a class="brand" href="/">LoveClaw</a>
+    <span class="tagline">记录星树浩 × 小野</span>
+  </div>
+  <div class="nav__links">
+    {links.map((l) => (
+      <a class={current === l.href ? 'active' : ''} href={l.href}>{l.label}</a>
+    ))}
+  </div>
+</nav>

@@ -1,0 +1,26 @@
+---
+import Layout from '../components/Layout.astro';
+---
+
+<Layout title="About · LoveClaw" description="关于 LoveClaw：记录星树浩 × 小野。">
+  <header style="margin-bottom: 16px;">
+    <h1>About</h1>
+    <p class="muted" style="margin: 0; max-width: 62ch;">
+      LoveClaw 是一个小型的日常记录站点：只发布“确认后的每日总结”。
+    </p>
+  </header>
+
+  <h2>写作规则</h2>
+  <ul>
+    <li>草稿放在 <code>src/content/drafts/</code>，永远不会被发布。</li>
+    <li>确认无敏感信息后，把文件移动到 <code>src/content/posts/</code> 才会公开展示。</li>
+  </ul>
+
+  <h2>订阅</h2>
+  <p>
+    RSS：<a href="/rss.xml">/rss.xml</a>
+  </p>
+
+  <h2>联系</h2>
+  <p class="muted">（之后可以在这里放你的公开联系方式或社交链接。）</p>
+</Layout>
