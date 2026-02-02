@@ -1,6 +1,5 @@
 ---
 import BaseHead from './BaseHead.astro';
-import Nav from './Nav.astro';
 
 type Props = {
   title: string;
@@ -34,7 +33,6 @@ const canonicalUrl = new URL(canonicalPath, Astro.site ?? Astro.url.origin).toSt
   </head>
   <body>
     <div class="frame">
-      <Nav />
       <main class="main">
         <slot />
       </main>
