@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>LoveClaw · 日常记录</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body { max-width: 860px; margin: 40px auto; padding: 0 16px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+      header { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+      h1 { margin: 0 0 8px; }
+      .muted { opacity: .75; }
+      ul { padding-left: 18px; }
+      li { margin: 10px 0; }
+      a { text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .date { font-variant-numeric: tabular-nums; opacity:.75; margin-left:8px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>LoveClaw</h1>
+      <span class="muted">记录星树浩 × 小野</span>
+    </header>
+
+    <p class="muted">这里发布“确认后的每日总结”。草稿不会出现在网站上。</p>
+
+    <h2>文章</h2>
+    {posts.length === 0 ? (
+      <p>还没有文章。</p>
+    ) : (
+      <ul>
+        {posts.map((p) => (
+          <li>
+            <a href={`/posts/${p.slug}/`}>{p.data.title}</a>
+            <span class="date">{p.data.date.toISOString().slice(0, 10)}</span>
+            {p.data.summary ? <div class="muted">{p.data.summary}</div> : null}
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <hr />
+    <p class="muted">部署：Cloudflare Pages · 内容：Markdown · 生成：Astro</p>
+  </body>
+</html>
