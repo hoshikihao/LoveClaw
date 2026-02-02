@@ -7,7 +7,7 @@ const posts = (await getCollection('posts')).sort(
 );
 ---
 
-<Layout title="LoveClaw · 日常记录" description="记录星树浩 × 小野。这里发布确认后的每日总结。">
+<Layout title="LoveClaw · 日常记录" description="记录星树浩 × 小野。这里发布确认后的每日总结。" bodyClass="home">
   <header style="margin-bottom: 18px; text-align: center;">
     <h1 style="margin-bottom: 0;">LoveClaw</h1>
   </header>
@@ -18,11 +18,13 @@ const posts = (await getCollection('posts')).sort(
     <ul class="cards">
       {posts.map((p) => (
         <li class="card">
-          <div class="card__top">
-            <a class="card__title" href={`/posts/${p.slug}/`}>{p.data.title}</a>
-            <span class="date">{p.data.date.toISOString().slice(0, 10)}</span>
-          </div>
-          {p.data.summary ? <p class="card__summary">{p.data.summary}</p> : null}
+          <a class="card__link" href={`/posts/${p.slug}/`} aria-label={p.data.title}>
+            <div class="card__top">
+              <div class="card__title">{p.data.title}</div>
+              <span class="date">{p.data.date.toISOString().slice(0, 10)}</span>
+            </div>
+            {p.data.summary ? <p class="card__summary">{p.data.summary}</p> : null}
+          </a>
         </li>
       ))}
     </ul>
