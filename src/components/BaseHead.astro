@@ -81,8 +81,15 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
     text-rendering: geometricPrecision;
   }
 
-  a { color: inherit; text-decoration: none; }
-  a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a, a:visited {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
 
   .frame {
     max-width: 980px;
@@ -91,11 +98,15 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
   }
 
   .main {
-    margin-top: 22px;
+    margin-top: 18px;
     background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 18px;
     padding: 22px 18px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    .main { box-shadow: none; }
   }
 
   .footer {
@@ -116,18 +127,26 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
   .nav__brand { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
   .brand { font-family: var(--serif); font-size: 22px; font-weight: 700; letter-spacing: 0.2px; }
   .tagline { color: var(--muted); font-size: 14px; }
-  .nav__links { display: flex; gap: 12px; align-items: center; }
+  .nav__links { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
   .nav__links a {
+    display: inline-flex;
+    align-items: center;
     padding: 6px 10px;
     border-radius: 999px;
     border: 1px solid transparent;
     color: var(--muted);
     font-size: 14px;
+    letter-spacing: 0.2px;
   }
+  .nav__links a:visited { color: var(--muted); }
+  .nav__links a:hover { text-decoration: none; border-color: var(--line); }
   .nav__links a.active {
     color: var(--ink);
     border-color: var(--line);
-    background: color-mix(in srgb, var(--paper) 90%, var(--bg));
+    background: rgba(16,17,20,0.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    .nav__links a.active { background: rgba(244,244,246,0.06); }
   }
 
   /* Magazine typography */
