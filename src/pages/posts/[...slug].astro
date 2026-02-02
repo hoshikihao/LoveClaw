@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import Layout from '../../components/Layout.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -8,37 +9,28 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const title = `${post.data.title} · LoveClaw`;
+const description = post.data.summary;
+const canonicalPath = `/posts/${post.slug}/`;
 ---
 
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{post.data.title} · LoveClaw</title>
-    <style>
-      :root { color-scheme: light dark; }
-      body { max-width: 860px; margin: 40px auto; padding: 0 16px; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
-      a { text-decoration: none; }
-      a:hover { text-decoration: underline; }
-      header { margin-bottom: 24px; }
-      .muted { opacity: .75; }
-      article :global(h1,h2,h3) { margin-top: 1.2em; }
-      article :global(p,li) { line-height: 1.7; }
-      pre { padding: 12px; overflow: auto; border: 1px solid rgba(128,128,128,.25); border-radius: 8px; }
-      code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-    </style>
-  </head>
-  <body>
-    <p><a href="/">← 返回首页</a></p>
+<Layout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  pageType="article"
+  pubDate={post.data.date}
+>
+  <p><a href="/">← 返回首页</a></p>
 
-    <header>
-      <h1>{post.data.title}</h1>
-      <div class="muted">{post.data.date.toISOString().slice(0, 10)}</div>
-      {post.data.summary ? <p class="muted">{post.data.summary}</p> : null}
-    </header>
+  <header style="margin-bottom: 24px;">
+    <h1>{post.data.title}</h1>
+    <div class="muted">{post.data.date.toISOString().slice(0, 10)}</div>
+    {post.data.summary ? <p class="muted">{post.data.summary}</p> : null}
+  </header>
 
-    <article>
-      <Content />
-    </article>
-  </body>
-</html>
+  <article>
+    <Content />
+  </article>
+</Layout>
