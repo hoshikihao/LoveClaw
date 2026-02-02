@@ -47,29 +47,19 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
 
 <style>
   :root {
-    color-scheme: light dark;
+    /* Force the warm paper look even when the device is in dark mode */
+    color-scheme: light;
 
-    --bg: #f6f0df;
-    --paper: #ffffff;
-    --ink: #101114;
-    --muted: rgba(16, 17, 20, 0.62);
-    --line: rgba(16, 17, 20, 0.12);
-    --accent: #0b57d0;
+    --bg: #f3ead8;      /* beige */
+    --paper: rgba(255,255,255,0.0);
+    --ink: #2b1d12;     /* coffee */
+    --muted: rgba(43, 29, 18, 0.58);
+    --line: rgba(43, 29, 18, 0.14);
+    --accent: #7a4a1e;  /* brown */
 
     --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Noto Serif SC", "Songti SC", serif;
     --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans SC", sans-serif;
     --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0c0d10;
-      --paper: #12131a;
-      --ink: #f4f4f6;
-      --muted: rgba(244, 244, 246, 0.64);
-      --line: rgba(244, 244, 246, 0.14);
-      --accent: #8ab4ff;
-    }
   }
 
   html { background: var(--bg); height: 100%; }
@@ -104,70 +94,37 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
   .main {
     margin-top: 18px;
     background: var(--paper);
-    border: 1px solid var(--line);
     border-radius: 18px;
     padding: 22px 18px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.04);
     flex: 1;
-  }
-  @media (prefers-color-scheme: dark) {
-    .main { box-shadow: none; }
   }
 
   .footer {
-    margin-top: 14px;
-    padding: 0 4px;
+    margin-top: auto;
+    padding: 18px 4px 0;
+    display: flex;
+    justify-content: center;
     text-align: center;
   }
 
   .muted { color: var(--muted); }
 
-  /* Nav */
-  .nav {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 18px;
-    padding: 0 4px;
-  }
-  .nav__brand { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .brand { font-family: var(--serif); font-size: 22px; font-weight: 700; letter-spacing: 0.2px; }
-  .tagline { color: var(--muted); font-size: 14px; }
-  .nav__links { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
-  .nav__links a {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 10px;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    color: var(--muted);
-    font-size: 14px;
-    letter-spacing: 0.2px;
-  }
-  .nav__links a:visited { color: var(--muted); }
-  .nav__links a:hover { text-decoration: none; border-color: var(--line); }
-  .nav__links a.active {
-    color: var(--ink);
-    border-color: var(--line);
-    background: rgba(16,17,20,0.04);
-  }
-  @media (prefers-color-scheme: dark) {
-    .nav__links a.active { background: rgba(244,244,246,0.06); }
-  }
+  /* (Nav removed) */
 
   /* Magazine typography */
-  h1, h2, h3 { font-family: var(--serif); letter-spacing: 0.2px; }
-  h1 { font-size: 42px; line-height: 1.06; margin: 0 0 10px; }
-  h2 { font-size: 20px; margin: 26px 0 10px; }
+  h1, h2, h3 { font-family: var(--mono); letter-spacing: 0.6px; text-transform: none; }
+  h1 { font-size: 44px; line-height: 1.02; margin: 0 0 14px; font-weight: 800; }
+  h2 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 26px 0 10px; }
   p { line-height: 1.8; }
 
   /* Cards list */
-  .cards { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 12px; }
+  .cards { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 16px; }
   .card {
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 14px 14px;
-    background: color-mix(in srgb, var(--paper) 96%, var(--bg));
+    border: 1px solid rgba(43,29,18,0.10);
+    border-radius: 16px;
+    padding: 16px 16px;
+    background: #f7f0e2;
+    box-shadow: 0 10px 28px rgba(43,29,18,0.10);
   }
   .card__top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; flex-wrap: wrap; }
   .card__title { font-family: var(--serif); font-size: 18px; margin: 0; }
