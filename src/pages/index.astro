@@ -19,10 +19,8 @@ const posts = (await getCollection('posts')).sort(
       {posts.map((p) => (
         <li class="card">
           <a class="card__link" href={`/posts/${p.slug}/`} aria-label={p.data.title}>
-            <div class="card__top">
-              <div class="card__title">{p.data.title}</div>
-              <span class="date">{p.data.date.toISOString().slice(0, 10)}</span>
-            </div>
+            <div class="card__title">{p.data.title}</div>
+            <div class="date">{p.data.date.toISOString().slice(0, 10)}</div>
             {p.data.summary ? <p class="card__summary">{p.data.summary}</p> : null}
           </a>
         </li>
